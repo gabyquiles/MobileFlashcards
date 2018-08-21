@@ -28,7 +28,7 @@ export const Field = styled.TextInput`
 `
 
 export const SubmitButton = ({...props}) => (
-    <ButtonTouchable>
+    <ButtonTouchable {...props}>
         <ButtonText>{props.text}</ButtonText>
     </ButtonTouchable>
 )
