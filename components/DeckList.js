@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Text, View} from 'react-native'
-import {Title} from "./Common"
-import {handleInitialData} from "../actions";
+import {StyleSheet, Text} from 'react-native'
+import {handleInitialData} from "../actions"
+import Deck from "./Deck"
+import {Container} from "./Common"
 
 class DeckList extends Component {
     componentDidMount() {
@@ -12,15 +13,25 @@ class DeckList extends Component {
     render() {
         const {deckIds} = this.props
         return (
-            <View>
-                <Title>Aquiii</Title>
+            <Container style={styles.list}>
+                <Text style={styles.mainTitle}>Decks Available</Text>
                 {deckIds.map((deckId) => (
-                    <Text>{deckId}</Text>
+                    <Deck key={deckId} deckId={deckId}/>
                 ))}
-            </View>
+            </Container>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    mainTitle: {
+        fontSize: 35
+    },
+    list: {
+        paddingTop: 30,
+        justifyContent: 'flex-start',
+    }
+})
 
 function mapStateToProps(decks) {
     return {

@@ -4,15 +4,31 @@ import styled from 'styled-components'
 export const Container = styled.View`
     flex: 1;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 `
 
 export const Row = styled.View`
     flex-direction: row;
 `
 
+export const Card = styled.View`
+    border-width: 2;
+    border-radius: 10;
+    border-color: #000000;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20;
+    margin-bottom: 20;
+    margin-left: 20;
+    margin-right: 20;
+`
+
 export const Title = styled.Text`
     font-size: 30;
+`
+export const SubTitle = styled.Text`
+    font-size: 25;
+    color: #757575;
 `
 
 export const Field = styled.TextInput`
