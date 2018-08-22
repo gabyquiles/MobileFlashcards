@@ -5,10 +5,7 @@ const FLASHCARDS_KEY = 'Flashcards:data'
 
 
 export function getDecks() {
-    return AsyncStorage.getItem(FLASHCARDS_KEY)
-        .then((results) => {
-            console.log(results)
-        })
+    return AsyncStorage.getItem(FLASHCARDS_KEY).then((decks) => JSON.parse(decks))
 }
 
 export function getDeck(id) {

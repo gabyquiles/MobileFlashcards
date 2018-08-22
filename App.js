@@ -3,13 +3,16 @@ import {StyleSheet} from 'react-native';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import reducer from './reducers'
-import NewDeck from './components/NewDeck'
+import middleware from './middleware'
+import DeckList from "./components/DeckList"
 
 export default class App extends React.Component {
     render() {
+        const store = createStore(reducer, middleware)
+
         return (
-            <Provider store={createStore(reducer)}>
-                <NewDeck/>
+            <Provider store={store}>
+                <DeckList/>
             </Provider>
         );
     }
