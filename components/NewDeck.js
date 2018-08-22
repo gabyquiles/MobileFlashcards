@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {Container, Field, Row, SubmitButton, Title} from "./Common"
-import {getDecks, saveDeckTitle} from "../utils/api"
+import {addDeck, handleAddDeck} from "../actions";
 
 class NewDeck extends Component {
     state = {
@@ -10,16 +11,14 @@ class NewDeck extends Component {
     submit = () => {
         const {title} = this.state
 
+
+        //dispath addDeck to update store
+        this.props.dispatch(handleAddDeck(title))
+
+        //reset state
+        this.setState(() => ({title: null}))
+
         // TODO: Navigate to Home
-
-        // Save new deck
-        saveDeckTitle(title)
-
-        console.log(getDecks())
-
-
-        // TODO: Clear local notification
-
     }
 
     render() {
@@ -37,4 +36,4 @@ class NewDeck extends Component {
 
 }
 
-export default NewDeck
+export default connect()(NewDeck)

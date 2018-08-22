@@ -1,3 +1,6 @@
+import {formatDeck} from "../utils/helpers";
+import {saveDeckTitle} from "../utils/api";
+
 export const RECEIVE_DECKS = "RECEIVE_DECKS"
 export const ADD_DECK = "ADD_DECK"
 
@@ -12,5 +15,13 @@ export function addDeck(deck) {
     return {
         type: ADD_DECK,
         deck
+    }
+}
+
+export function handleAddDeck(title) {
+    return (dispatch) => {
+        const deck = formatDeck(title)
+        dispatch(addDeck(deck))
+        saveDeckTitle(title)
     }
 }

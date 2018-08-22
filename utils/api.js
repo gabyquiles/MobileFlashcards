@@ -1,4 +1,5 @@
 import {AsyncStorage} from 'react-native'
+import {formatDeck} from "./helpers"
 
 const FLASHCARDS_KEY = 'Flashcards:data'
 
@@ -15,12 +16,7 @@ export function getDeck(id) {
 }
 
 export function saveDeckTitle(title) {
-    const data = {
-        [title]: {
-            title,
-            questions: []
-        }
-    }
+    const data = formatDeck(title)
     return AsyncStorage.mergeItem(FLASHCARDS_KEY, JSON.stringify(data))
 }
 
