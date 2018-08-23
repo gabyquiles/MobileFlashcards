@@ -16,7 +16,14 @@ class DeckList extends Component {
             <Container style={styles.list}>
                 <Text style={styles.mainTitle}>Decks Available</Text>
                 {deckIds.map((deckId) => (
-                    <Deck key={deckId} deckId={deckId}/>
+                    <Deck deckId={deckId} key={deckId} onPress={() => {
+                        this.props.navigation.navigate(
+                            'SingleDeckView',
+                            {deckId: deckId}
+                        )
+                        console.log("WEEEEPA")
+                    }}/>
+
                 ))}
             </Container>
         );

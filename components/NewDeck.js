@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Container, Field, Row, SubmitButton, Title} from "./Common"
-import {addDeck, handleAddDeck} from "../actions";
+import {Container, Field, MainButton, Row, Title} from "./Common"
+import {handleAddDeck} from "../actions";
 
 class NewDeck extends Component {
     state = {
@@ -29,7 +29,7 @@ class NewDeck extends Component {
                 <Row>
                     <Field value={title} onChangeText={text => this.setState({title: text})}/>
                 </Row>
-                <SubmitButton text="Submit" onPress={this.submit}/>
+                <MainButton text="Submit" onPress={this.submit}/>
             </Container>
         )
     }

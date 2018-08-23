@@ -2,12 +2,13 @@ import React from 'react';
 import {Platform, StyleSheet} from 'react-native';
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import {createBottomTabNavigator} from 'react-navigation'
+import {createBottomTabNavigator, createStackNavigator} from 'react-navigation'
 import {FontAwesome, Ionicons} from '@expo/vector-icons'
 import reducer from './reducers'
 import middleware from './middleware'
 import DeckList from "./components/DeckList"
 import NewDeck from "./components/NewDeck"
+import SingleDeck from "./components/SingleDeck"
 
 const white = '#FFFFFF'
 const purple = '#292477'
@@ -47,13 +48,23 @@ const Tabs = createBottomTabNavigator({
     }
 })
 
+const QuizNavigator = createStackNavigator({
+    Home: {
+        screen: Tabs
+    },
+    SingleDeckView: {
+        screen: SingleDeck,
+
+    }
+})
+
 export default class App extends React.Component {
     render() {
         const store = createStore(reducer, middleware)
 
         return (
             <Provider store={store}>
-                <Tabs/>
+                <QuizNavigator/>
             </Provider>
         );
     }

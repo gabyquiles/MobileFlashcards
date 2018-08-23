@@ -4,14 +4,14 @@ import styled from 'styled-components'
 export const Container = styled.View`
     flex: 1;
     justify-content: center;
-    align-items: stretch;
+    align-items: center;
 `
 
 export const Row = styled.View`
     flex-direction: row;
 `
 
-export const Card = styled.View`
+export const Card = styled.TouchableOpacity`
     border-width: 2;
     border-radius: 10;
     border-color: #000000;
@@ -43,24 +43,33 @@ export const Field = styled.TextInput`
     font-size: 22;
 `
 
-export const SubmitButton = ({...props}) => (
-    <ButtonTouchable {...props}>
-        <ButtonText>{props.text}</ButtonText>
-    </ButtonTouchable>
+export const MainButton = ({...props}) => (
+    <MainTouchable {...props}>
+        <MainButtonText {...props}>{props.text}</MainButtonText>
+    </MainTouchable>
 )
 
-
-const ButtonTouchable = styled.TouchableOpacity`
+const MainTouchable = styled.TouchableOpacity`
     background-color: #000000;
     border-radius: 5;
+    border-width: 2;
     padding-right: 30;
     padding-left: 30;
     padding-top: 10;
     padding-bottom: 10;
+    margin-top: 5;
+    margin-bottom: 5;
 `
 
-const ButtonText = styled.Text`
+const MainButtonText = styled.Text`
     color: #FFFFFF;
     font-size: 22;
     text-align: center;
+    border-width: 0 !important
+`
+
+export const SecondaryButton = styled(MainButton)`
+    color: #000000;
+    backgroundColor: #FFFFFF;
+    border-color: #000000;
 `

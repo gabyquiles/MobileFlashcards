@@ -4,9 +4,9 @@ import {Card, SubTitle, Title} from './Common'
 
 class Deck extends Component {
     render() {
-        const {deck} = this.props
+        const {deck, onPress} = this.props
         return (
-            <Card>
+            <Card onPress={onPress}>
                 <Title>{deck.title}</Title>
 
                 <SubTitle>{deck.questions.length} cards</SubTitle>
