@@ -1,31 +1,34 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {StyleSheet, Text} from 'react-native'
+import {FlatList, StyleSheet, Text} from 'react-native'
 import {handleInitialData} from "../actions"
 import Deck from "./Deck"
-import {Container} from "./Common"
+import {List} from "./Common"
 
 class DeckList extends Component {
     componentDidMount() {
         this.props.dispatch(handleInitialData())
     }
 
+    renderHeader() {
+        return (
+            <Text style={styles.mainTitle}>Decks Available</Text>
+        )
+    }
+
     render() {
         const {deckIds} = this.props
         return (
-            <Container style={styles.list}>
-                <Text style={styles.mainTitle}>Decks Available</Text>
-                {deckIds.map((deckId) => (
-                    <Deck deckId={deckId} key={deckId} onPress={() => {
-                        this.props.navigation.navigate(
-                            'SingleDeckView',
-                            {deckId: deckId}
-                        )
-                        console.log("WEEEEPA")
-                    }}/>
-
-                ))}
-            </Container>
+            <FlatList
+                ListHeaderComponent={this.renderHeader}
+                data={deckIds}
+                renderItem={({item}) => (<Deck deckId={item.key} onPress={() => {
+                    this.props.navigation.navigate(
+                        'SingleDeckView',
+                        {deckId: item.key}
+                    )
+                }}/>)}
+            />
         );
     }
 }
@@ -33,16 +36,13 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
     mainTitle: {
         fontSize: 35
-    },
-    list: {
-        paddingTop: 30,
-        justifyContent: 'flex-start',
     }
 })
 
 function mapStateToProps(decks) {
+    // In order to avoid a warking on FlatList we need the data in format [{key: 1}, {key: 2}]
     return {
-        deckIds: Object.keys(decks)
+        deckIds: Object.keys(decks).map((deckId) => ({key: deckId}))
     }
 }
 
