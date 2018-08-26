@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Container, MainButton, SecondaryButton, SubTitle, Title} from "./Common";
+import {Button, Container, SubTitle, Title} from "./Common";
 
 class SingleDeck extends Component {
     addCard = () => {
@@ -17,8 +17,8 @@ class SingleDeck extends Component {
             <Container>
                 <Title>{deck.title}</Title>
                 <SubTitle>{deck.questions.length} cards</SubTitle>
-                <MainButton text="Start a Quiz" onPress={this.startQuiz}/>
-                <SecondaryButton text="Add Card" onPress={this.addCard}/>
+                <Button primary text="Start a Quiz" onPress={this.startQuiz}/>
+                <Button text="Add Card" onPress={this.addCard}/>
             </Container>
         )
     }

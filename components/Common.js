@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 export const Container = styled.View`
     flex: 1;
@@ -47,14 +47,15 @@ export const Field = styled.TextInput`
     font-size: 22;
 `
 
-export const MainButton = ({...props}) => (
-    <MainTouchable {...props}>
-        <MainButtonText {...props}>{props.text}</MainButtonText>
-    </MainTouchable>
+export const Button = ({...props}) => (
+    <ButtonTouchable {...props}>
+        <ButtonText {...props}>{props.text}</ButtonText>
+    </ButtonTouchable>
 )
 
-const MainTouchable = styled.TouchableOpacity`
-    background-color: #000000;
+const ButtonTouchable = styled.TouchableOpacity`
+    background-color: #FFFFFF;
+    border-color: #000000;
     border-radius: 5;
     border-width: 2;
     padding-right: 30;
@@ -63,17 +64,18 @@ const MainTouchable = styled.TouchableOpacity`
     padding-bottom: 10;
     margin-top: 5;
     margin-bottom: 5;
+    
+    ${props => props.primary && css`
+        background-color: #000000;
+    `}
 `
 
-const MainButtonText = styled.Text`
-    color: #FFFFFF;
+const ButtonText = styled.Text`
+    color: #000000;
     font-size: 22;
     text-align: center;
     border-width: 0 !important
-`
-
-export const SecondaryButton = styled(MainButton)`
-    color: #000000;
-    backgroundColor: #FFFFFF;
-    border-color: #000000;
+    ${props => props.primary && css`
+        color: #FFFFFF;
+    `}
 `

@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Container, Error, Field, MainButton, Row} from "./Common";
+import {Button, Container, Error, Field, Row} from "./Common";
 import {handleAddCard} from "../actions";
 import {connect} from 'react-redux'
 
@@ -38,7 +38,7 @@ class NewCard extends Component {
                     <Field value={answer} onChangeText={text => this.setState({answer: text})}
                            placeholder="Enter the answer"/>
                 </Row>
-                <MainButton text="Submit" onPress={this.submit}/>
+                <Button primary text="Submit" onPress={this.submit}/>
             </Container>
         )
     }
