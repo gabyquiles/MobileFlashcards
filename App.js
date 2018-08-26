@@ -15,7 +15,7 @@ const white = '#FFFFFF'
 const purple = '#292477'
 
 const Tabs = createBottomTabNavigator({
-    DeckList: {
+    Home: {
         screen: DeckList,
         navigationOptions: {
             tabBarLabel: 'List Of Decks',

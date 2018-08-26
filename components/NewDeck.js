@@ -18,7 +18,15 @@ class NewDeck extends Component {
         //reset state
         this.setState(() => ({title: null}))
 
-        // TODO: Navigate to Home
+        // Navigate to Home
+        this.toDeck(title)
+    }
+
+    toDeck = (title) => {
+        this.props.navigation.navigate(
+            'SingleDeckView',
+            {deckTitle: title}
+        )
     }
 
     render() {
