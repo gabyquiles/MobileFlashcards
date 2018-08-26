@@ -7,6 +7,13 @@ export function formatDeck(title) {
     }
 }
 
+export function formatCard(question, answer) {
+    return {
+        question,
+        answer
+    }
+}
+
 export function getDailyReminder() {
     return {
         today: "Remember to study today!"

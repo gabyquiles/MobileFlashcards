@@ -7,6 +7,7 @@ import {List} from "./Common"
 
 class DeckList extends Component {
     componentDidMount() {
+        // resetCards()
         this.props.dispatch(handleInitialData())
     }
 
@@ -18,6 +19,7 @@ class DeckList extends Component {
 
     render() {
         const {deckIds} = this.props
+        //TODO: Show message when no decks has been created yet
         return (
             <FlatList
                 ListHeaderComponent={this.renderHeader}
@@ -25,7 +27,7 @@ class DeckList extends Component {
                 renderItem={({item}) => (<Deck deckId={item.key} onPress={() => {
                     this.props.navigation.navigate(
                         'SingleDeckView',
-                        {deckId: item.key}
+                        {deckTitle: item.key}
                     )
                 }}/>)}
             />

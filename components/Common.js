@@ -30,6 +30,10 @@ export const SubTitle = styled.Text`
     font-size: 25;
     color: #757575;
 `
+export const Error = styled.Text`
+    font-size: 25;
+    color: #FF0000;
+`
 
 export const Field = styled.TextInput`
     flex: 1;

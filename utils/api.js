@@ -18,5 +18,17 @@ export function saveDeckTitle(title) {
 }
 
 export function addCardToDeck(title, card) {
+    const deck = AsyncStorage.getItem(FLASHCARDS_KEY)
+        .then((results) => {
+            const data = JSON.parse(results)
+            const deck = data[title]
+            deck.questions.push(card)
+            AsyncStorage.mergeItem(FLASHCARDS_KEY, JSON.stringify({
+                [title]: deck
+            }))
+        })
+}
 
+export function resetCards() {
+    AsyncStorage.setItem(FLASHCARDS_KEY, JSON.stringify({}))
 }
