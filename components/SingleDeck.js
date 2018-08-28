@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {Button, Container, SubTitle, Title} from "./Common"
 import {handleGetDeck} from "../actions"
@@ -40,8 +40,11 @@ class SingleDeck extends Component {
                 <Container>
                     <Title>{deck.title}</Title>
                     <SubTitle>{deck.questions.length} cards</SubTitle>
-                    <Button primary text="Start a Quiz" onPress={this.startQuiz}/>
                     <Button text="Add Card" onPress={this.addCard}/>
+                    <Fragment>
+                        {deck.questions.length > 0 && <Button primary text="Start a Quiz" onPress={this.startQuiz}/>}
+                    </Fragment>
+
                 </Container>
                 : <Container>
                     <Title>Loading</Title>
