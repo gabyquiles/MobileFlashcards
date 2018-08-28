@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {StackActions} from 'react-navigation'
 import {Button, Container, Error, Field, Row} from "./Common";
 import {handleAddCard} from "../actions";
 import {connect} from 'react-redux'
@@ -15,6 +16,12 @@ class NewCard extends Component {
 
     }
 
+    toDeck = () => {
+        const {navigation} = this.props
+        const {deckTitle} = navigation.state.params
+        this.props.navigation.dispatch(StackActions.pop({n: 1}))
+    }
+
     submit = () => {
         const {question, answer} = this.state
         if (question === "" || answer === "") {
@@ -23,6 +30,7 @@ class NewCard extends Component {
         }
         const {dispatch, deckTitle} = this.props
         dispatch(handleAddCard(deckTitle, question, answer))
+        this.toDeck()
     }
 
     render() {

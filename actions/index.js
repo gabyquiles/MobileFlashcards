@@ -1,9 +1,8 @@
-import {formatCard, formatDeck} from "../utils/helpers";
-import {addCardToDeck, getDecks, saveDeckTitle} from "../utils/api";
+import {formatCard} from "../utils/helpers";
+import {addCardToDeck, getDeck, getDecks, saveDeckTitle} from "../utils/api";
 
 export const RECEIVE_DECKS = "RECEIVE_DECKS"
-export const ADD_DECK = "ADD_DECK"
-export const ADD_CARD = "ADD_CARD"
+export const RECEIVE_SINGLE_DECK = "RECEIVE_SINGLE_DECK"
 
 export function receiveDecks(decks) {
     return {
@@ -12,18 +11,10 @@ export function receiveDecks(decks) {
     }
 }
 
-export function addDeck(deck) {
+export function receiveSingleDeck(deck) {
     return {
-        type: ADD_DECK,
+        type: RECEIVE_SINGLE_DECK,
         deck
-    }
-}
-
-export function addCard(title, card) {
-    return {
-        type: ADD_CARD,
-        title,
-        card
     }
 }
 
@@ -37,16 +28,19 @@ export function handleInitialData() {
 
 export function handleAddDeck(title) {
     return (dispatch) => {
-        const deck = formatDeck(title)
-        dispatch(addDeck(deck))
-        saveDeckTitle(title)
+        saveDeckTitle(title).then((deck) => dispatch(receiveSingleDeck(deck)))
     }
 }
 
 export function handleAddCard(title, question, answer) {
     return (dispatch) => {
         const card = formatCard(question, answer)
-        dispatch(addCard(title, card))
-        addCardToDeck(title, card)
+        addCardToDeck(title, card).then((deck) => dispatch(receiveSingleDeck(deck)))
+    }
+}
+
+export function handleGetDeck(title) {
+    return (dispatch) => {
+        getDeck(title).then((deck) => dispatch(receiveSingleDeck(deck)))
     }
 }

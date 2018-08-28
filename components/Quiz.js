@@ -5,7 +5,8 @@ import {Button, SubTitle, Title} from "./Common"
 
 class Quiz extends Component {
     static navigationOptions = {
-        title: "Quiz"
+        title: "Quiz",
+        headerLeft: null
     }
 
     state = {
@@ -37,8 +38,7 @@ class Quiz extends Component {
         }
     }
 
-    toScore = () => {
-        const {answeredCorrectly} = this.state
+    toScore = (answeredCorrectly) => {
         const {deck, navigation} = this.props
         navigation.navigate(
             'QuizScore',
@@ -46,15 +46,19 @@ class Quiz extends Component {
         )
     }
 
+    componentDidUpdate() {
+        const {answered, answeredCorrectly} = this.state
+        const {deck} = this.props
+        if (answered === deck.questions.length) {
+            this.toScore(answeredCorrectly)
+        }
+    }
+
     render() {
         const cardsLeft = this.cardsLeft()
-        const {currentCardIdx, showAnswer, answered} = this.state
+        const {currentCardIdx, showAnswer} = this.state
         const {deck} = this.props
         const currentCard = deck.questions[currentCardIdx]
-
-        if (answered === deck.questions.length) {
-            this.toScore()
-        }
 
         return (
             <View>
