@@ -9,7 +9,8 @@ import middleware from './middleware'
 import DeckList from "./components/DeckList"
 import NewDeck from "./components/NewDeck"
 import SingleDeck from "./components/SingleDeck"
-import NewCard from "./components/NewCard";
+import NewCard from "./components/NewCard"
+import Quiz from "./components/Quiz"
 
 const white = '#FFFFFF'
 const purple = '#292477'
@@ -59,6 +60,9 @@ const QuizNavigator = createStackNavigator({
     },
     NewCard: {
         screen: NewCard
+    },
+    StartQuiz: {
+        screen: Quiz
     }
 })
 
