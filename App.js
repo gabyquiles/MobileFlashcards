@@ -11,6 +11,7 @@ import NewDeck from "./components/NewDeck"
 import SingleDeck from "./components/SingleDeck"
 import NewCard from "./components/NewCard"
 import Quiz from "./components/Quiz"
+import QuizScore from "./components/QuizScore";
 
 const white = '#FFFFFF'
 const purple = '#292477'
@@ -63,6 +64,9 @@ const QuizNavigator = createStackNavigator({
     },
     StartQuiz: {
         screen: Quiz
+    },
+    QuizScore: {
+        screen: QuizScore
     }
 })
 

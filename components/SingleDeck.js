@@ -3,6 +3,16 @@ import {connect} from 'react-redux'
 import {Button, Container, SubTitle, Title} from "./Common";
 
 class SingleDeck extends Component {
+    static navigationOptions = ({navigation}) => {
+        const {deckTitle} = navigation.state.params
+
+        return (
+            {
+                title: deckTitle
+            }
+        )
+    }
+
     //TODO: Not refreshing after adding a card
     addCard = () => {
         const {deck, navigation} = this.props

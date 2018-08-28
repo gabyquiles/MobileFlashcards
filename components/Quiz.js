@@ -4,21 +4,18 @@ import {connect} from 'react-redux'
 import {Button, SubTitle, Title} from "./Common"
 
 class Quiz extends Component {
-    static navigationOptions = ({navigation}) => {
-        const {deckTitle} = navigation.state.params
-
-        return (
-            {
-                title: deckTitle
-            }
-        )
+    static navigationOptions = {
+        title: "Quiz"
     }
 
     state = {
         currentCardIdx: 0,
         showAnswer: false,
-        answeredCorrectly: 0
+        answeredCorrectly: 0,
+        answered: 0
     }
+
+    cardsLeft = () => (this.props.deck.questions.length - this.state.answered)
 
     toggleAnswer = () => {
         const {showAnswer} = this.state
@@ -32,24 +29,36 @@ class Quiz extends Component {
     }
 
     nextCard = () => {
-        const currentCardIdx = this.state.currentCardIdx + 1
-        const {deck} = this.props
-        if (currentCardIdx < deck.questions.length) {
+        const answered = this.state.answered + 1
+        this.setState((state) => ({answered}))
+        if (this.cardsLeft() > 1) {
+            const currentCardIdx = this.state.currentCardIdx + 1
             this.setState((state) => ({currentCardIdx}))
-        } else {
-            //    TODO: Navigate to score screen
         }
     }
 
+    toScore = () => {
+        const {answeredCorrectly} = this.state
+        const {deck, navigation} = this.props
+        navigation.navigate(
+            'QuizScore',
+            {answeredCorrectly, total: deck.questions.length, deckTitle: deck.title}
+        )
+    }
+
     render() {
-        const {currentCardIdx, showAnswer} = this.state
+        const cardsLeft = this.cardsLeft()
+        const {currentCardIdx, showAnswer, answered} = this.state
         const {deck} = this.props
         const currentCard = deck.questions[currentCardIdx]
-        console.log(currentCardIdx)
-        console.log(currentCard)
+
+        if (answered === deck.questions.length) {
+            this.toScore()
+        }
+
         return (
             <View>
-                <Text>{currentCardIdx + 1} of {deck.questions.length}</Text>
+                <Text>{cardsLeft} cards left</Text>
                 <Title>{currentCard.question}</Title>
                 <SubTitle>{showAnswer && currentCard.answer}</SubTitle>
                 <Button onPress={this.toggleAnswer} text={showAnswer ? "Hide Answer" : "Show Answer"}/>
@@ -57,6 +66,7 @@ class Quiz extends Component {
                 <Button onPress={this.nextCard} text="Incorrect"/>
             </View>
         )
+
     }
 }
 
