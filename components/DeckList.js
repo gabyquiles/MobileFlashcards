@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {FlatList, StyleSheet, Text} from 'react-native'
 import {handleInitialData} from "../actions"
 import Deck from "./Deck"
-import {List} from "./Common"
+import {Container, Title} from "./Common"
 
 class DeckList extends Component {
     componentDidMount() {
@@ -17,20 +17,24 @@ class DeckList extends Component {
         )
     }
 
+
     render() {
         const {deckIds} = this.props
-        //TODO: Show message when no decks has been created yet
         return (
-            <FlatList
-                ListHeaderComponent={this.renderHeader}
-                data={deckIds}
-                renderItem={({item}) => (<Deck deckId={item.key} onPress={() => {
-                    this.props.navigation.navigate(
-                        'SingleDeckView',
-                        {deckTitle: item.key}
-                    )
-                }}/>)}
-            />
+            deckIds.length > 0
+                ? <FlatList
+                    ListHeaderComponent={this.renderHeader}
+                    data={deckIds}
+                    renderItem={({item}) => (<Deck deckId={item.key} onPress={() => {
+                        this.props.navigation.navigate(
+                            'SingleDeckView',
+                            {deckTitle: item.key}
+                        )
+                    }}/>)}
+                />
+                : <Container>
+                    <Title>No Decks Created</Title>
+                </Container>
         );
     }
 }
