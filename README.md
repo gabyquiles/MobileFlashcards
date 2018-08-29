@@ -13,3 +13,6 @@ npm start
 iOS Emulator - iPhone X
 Android Emulator - Pixel XL API 26
 Pixel 2 XL
+
+## Notes
+Some lines were reused from the UdaciFitness project
