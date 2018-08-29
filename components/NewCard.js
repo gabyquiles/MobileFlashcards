@@ -46,7 +46,7 @@ class NewCard extends Component {
                     <Field value={answer} onChangeText={text => this.setState({answer: text})}
                            placeholder="Enter the answer"/>
                 </Row>
-                <Button primary text="Submit" onPress={this.submit}/>
+                <Button primary onPress={this.submit}>Submit</Button>
             </Container>
         )
     }

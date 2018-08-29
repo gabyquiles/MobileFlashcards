@@ -52,13 +52,7 @@ export const Field = styled.TextInput`
     font-size: 22;
 `
 
-export const Button = ({...props}) => (
-    <ButtonTouchable {...props}>
-        <ButtonText {...props}>{props.text}</ButtonText>
-    </ButtonTouchable>
-)
-
-export const B = ({children, onPress, primary, style = {}, textStyle = {}}) => {
+export const Button = ({children, onPress, primary, style = {}, textStyle = {}}) => {
     return (
         <ButtonTouchable primary={primary} style={style} onPress={onPress}>
             <ButtonText primary={primary} style={textStyle}>{children}</ButtonText>

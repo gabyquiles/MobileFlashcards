@@ -40,9 +40,9 @@ class SingleDeck extends Component {
                 <Container>
                     <Title>{deck.title}</Title>
                     <SubTitle>{deck.questions.length} cards</SubTitle>
-                    <Button text="Add Card" onPress={this.addCard}/>
+                    <Button onPress={this.addCard}>Add Card</Button>
                     <Fragment>
-                        {deck.questions.length > 0 && <Button primary text="Start a Quiz" onPress={this.startQuiz}/>}
+                        {deck.questions.length > 0 && <Button primary onPress={this.startQuiz}>Start a Quiz</Button>}
                     </Fragment>
 
                 </Container>

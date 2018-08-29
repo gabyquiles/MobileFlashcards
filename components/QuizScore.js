@@ -3,7 +3,7 @@ import {Platform, View} from 'react-native'
 import {NavigationActions, StackActions} from 'react-navigation';
 import {Ionicons} from '@expo/vector-icons'
 import {Button, Row, SubTitle, Title} from './Common'
-import {clearLocalNotification, setLocalNotification} from "../utils/helpers";
+import {clearLocalNotification, setLocalNotification} from "../utils/helpers"
 
 class QuizScore extends Component {
     static navigationOptions = {
@@ -64,8 +64,8 @@ class QuizScore extends Component {
                     />
                 </Row>
                 <SubTitle>You answered correctly {correctPercentage}% of the questions</SubTitle>
-                <Button text="Restart Quiz" onPress={this.restartQuiz}/>
-                <Button text="Back To Deck" onPress={this.toDeck}/>
+                <Button onPress={this.restartQuiz}>Restart Quiz</Button>
+                <Button onPress={this.toDeck}>Back To Deck</Button>
             </View>
         )
     }

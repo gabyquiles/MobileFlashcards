@@ -37,7 +37,7 @@ class NewDeck extends Component {
                 <Row>
                     <Field value={title} onChangeText={text => this.setState({title: text})}/>
                 </Row>
-                <Button primary text="Submit" onPress={this.submit}/>
+                <Button primary onPress={this.submit}>Submit</Button>
             </Container>
         )
     }

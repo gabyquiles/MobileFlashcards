@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {StyleSheet, Text} from 'react-native'
 import {connect} from 'react-redux'
-import {B, CenteredColumn, SubTitle, Title} from "./Common"
+import {Button, CenteredColumn, SubTitle, Title} from "./Common"
 import TextButton from './TextButton'
 import {limegreen, red} from "../utils/colors"
 
@@ -77,12 +77,12 @@ class Quiz extends Component {
                     <TextButton onPress={this.toggleAnswer}>
                         {showAnswer ? "Hide Answer" : "Show Answer"}
                     </TextButton>
-                    <B onPress={this.markCorrect} style={styles.correctBtn}>
+                    <Button onPress={this.markCorrect} style={styles.correctBtn}>
                         Correct
-                    </B>
-                    <B onPress={this.nextCard} style={styles.incorrectBtn}>
+                    </Button>
+                    <Button onPress={this.nextCard} style={styles.incorrectBtn}>
                         Incorrect
-                    </B>
+                    </Button>
                 </CenteredColumn>
             </CenteredColumn>
         )
