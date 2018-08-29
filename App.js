@@ -12,6 +12,7 @@ import SingleDeck from "./components/SingleDeck"
 import NewCard from "./components/NewCard"
 import Quiz from "./components/Quiz"
 import QuizScore from "./components/QuizScore";
+import {setLocalNotification} from "./utils/helpers";
 
 const white = '#FFFFFF'
 const purple = '#292477'
@@ -71,6 +72,10 @@ const QuizNavigator = createStackNavigator({
 })
 
 export default class App extends React.Component {
+    componentDidMount() {
+        setLocalNotification()
+    }
+
     render() {
         const store = createStore(reducer, middleware)
 

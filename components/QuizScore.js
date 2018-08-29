@@ -3,6 +3,7 @@ import {Platform, View} from 'react-native'
 import {NavigationActions, StackActions} from 'react-navigation';
 import {Ionicons} from '@expo/vector-icons'
 import {Button, Row, SubTitle, Title} from './Common'
+import {clearLocalNotification, setLocalNotification} from "../utils/helpers";
 
 class QuizScore extends Component {
     static navigationOptions = {
@@ -28,7 +29,6 @@ class QuizScore extends Component {
         });
         navigation.dispatch(resetAction);
     }
-
     restartQuiz = () => {
         const {navigation} = this.props
         const {deckTitle} = navigation.state.params
@@ -44,6 +44,10 @@ class QuizScore extends Component {
             ],
         });
         navigation.dispatch(resetAction);
+    }
+
+    componentDidMount() {
+        clearLocalNotification().then(setLocalNotification)
     }
 
     render() {
