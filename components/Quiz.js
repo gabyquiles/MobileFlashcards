@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
-import {Text, View} from 'react-native'
+import {StyleSheet, Text} from 'react-native'
 import {connect} from 'react-redux'
-import {Button, SubTitle, Title} from "./Common"
+import {B, CenteredColumn, SubTitle, Title} from "./Common"
+import TextButton from './TextButton'
+import {limegreen, red} from "../utils/colors"
 
 class Quiz extends Component {
     static navigationOptions = {
@@ -61,18 +63,47 @@ class Quiz extends Component {
         const currentCard = deck.questions[currentCardIdx]
 
         return (
-            <View>
-                <Text>{cardsLeft} cards left</Text>
-                <Title>{currentCard.question}</Title>
-                <SubTitle>{showAnswer && currentCard.answer}</SubTitle>
-                <Button onPress={this.toggleAnswer} text={showAnswer ? "Hide Answer" : "Show Answer"}/>
-                <Button onPress={this.markCorrect} text="Correct"/>
-                <Button onPress={this.nextCard} text="Incorrect"/>
-            </View>
+            <CenteredColumn>
+                <CenteredColumn>
+                    <Text>{cardsLeft} cards left</Text>
+                </CenteredColumn>
+
+                <CenteredColumn>
+                    <Title>{currentCard.question}</Title>
+                    <SubTitle style={styles.answerText}>{showAnswer && currentCard.answer}</SubTitle>
+                </CenteredColumn>
+
+                <CenteredColumn>
+                    <TextButton onPress={this.toggleAnswer}>
+                        {showAnswer ? "Hide Answer" : "Show Answer"}
+                    </TextButton>
+                    <B onPress={this.markCorrect} style={styles.correctBtn}>
+                        Correct
+                    </B>
+                    <B onPress={this.nextCard} style={styles.incorrectBtn}>
+                        Incorrect
+                    </B>
+                </CenteredColumn>
+            </CenteredColumn>
         )
 
     }
 }
+
+const styles = StyleSheet.create({
+    questionContainer: {
+        alignItems: 'flex-start'
+    },
+    correctBtn: {
+        backgroundColor: limegreen
+    },
+    incorrectBtn: {
+        backgroundColor: red
+    },
+    answerText: {
+        height: 30
+    }
+})
 
 function mapStateToProps(decks, {navigation}) {
     const {deckTitle} = navigation.state.params

@@ -11,6 +11,11 @@ export const Row = styled.View`
     flex-direction: row;
 `
 
+export const CenteredColumn = styled.View`
+    flex:1;
+    align-items: center;
+`
+
 export const Card = styled.TouchableOpacity`
     border-width: 2;
     border-radius: 10;
@@ -52,6 +57,14 @@ export const Button = ({...props}) => (
         <ButtonText {...props}>{props.text}</ButtonText>
     </ButtonTouchable>
 )
+
+export const B = ({children, onPress, primary, style = {}, textStyle = {}}) => {
+    return (
+        <ButtonTouchable primary={primary} style={style} onPress={onPress}>
+            <ButtonText primary={primary} style={textStyle}>{children}</ButtonText>
+        </ButtonTouchable>
+    )
+}
 
 const ButtonTouchable = styled.TouchableOpacity`
     background-color: #FFFFFF;
