@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import {Platform, View} from 'react-native'
+import {Platform} from 'react-native'
 import {NavigationActions, StackActions} from 'react-navigation';
 import {Ionicons} from '@expo/vector-icons'
-import {Button, Row, SubTitle, Title} from './Common'
+import {Button, CenteredColumn, Container, SubTitle, Title} from './Common'
 import {clearLocalNotification, setLocalNotification} from "../utils/helpers"
 
 class QuizScore extends Component {
@@ -55,18 +55,20 @@ class QuizScore extends Component {
         const {answeredCorrectly, total, deckTitle} = navigation.state.params
         const correctPercentage = Math.round((answeredCorrectly / total) * 100)
         return (
-            <View>
+            <CenteredColumn style={{paddingTop: 10, paddingLeft: 10, paddingRight: 10}}>
                 <Title>Congratulations!!</Title>
-                <Row>
+                <Container>
                     <Ionicons
                         name={Platform.OS === 'ios' ? 'ios-happy-outline' : 'md-happy'}
                         size={100}
                     />
-                </Row>
-                <SubTitle>You answered correctly {correctPercentage}% of the questions</SubTitle>
-                <Button onPress={this.restartQuiz}>Restart Quiz</Button>
-                <Button onPress={this.toDeck}>Back To Deck</Button>
-            </View>
+                </Container>
+                <CenteredColumn>
+                    <SubTitle>You answered correctly {correctPercentage}% of the questions</SubTitle>
+                    <Button onPress={this.restartQuiz}>Restart Quiz</Button>
+                    <Button onPress={this.toDeck}>Back To Deck</Button>
+                </CenteredColumn>
+            </CenteredColumn>
         )
     }
 }

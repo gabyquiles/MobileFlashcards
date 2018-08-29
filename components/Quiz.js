@@ -65,7 +65,7 @@ class Quiz extends Component {
         return (
             <CenteredColumn>
                 <CenteredColumn>
-                    <Text>{cardsLeft} cards left</Text>
+                    <Text style={{marginTop: 10}}>{cardsLeft} cards left</Text>
                 </CenteredColumn>
 
                 <CenteredColumn>

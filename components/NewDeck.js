@@ -32,7 +32,7 @@ class NewDeck extends Component {
     render() {
         const {title} = this.state
         return (
-            <Container>
+            <Container style={{paddingLeft: 10, paddingRight: 10}}>
                 <Title>What is the title of your new deck?</Title>
                 <Row>
                     <Field value={title} onChangeText={text => this.setState({title: text})}/>
